@@ -29,5 +29,6 @@ oci waas threat-feed update --waas-policy-id $wafpol01 --threat-feeds file:///tm
 ```
 export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
 
-oci waas protection-rule list --waas-policy-id $wafpol01 --all --output table --query "data [?contains(\"labels\",'PCI')].{WAFKey:\"key\",Labels:\"labels\"}"
+
+oci waas protection-rule list --waas-policy-id $wafpolid --all --output table --query "data [?contains(\"labels\",'PCI')].{WAFKey:\"key\",Labels:\"labels\"}"
 ```
