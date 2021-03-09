@@ -35,12 +35,19 @@ oci waas protection-rule list --waas-policy-id $wafpolid --all --output table --
 
 
 Top OWASP 10 vulnerability groups include:
+
 • A1 – Injections (SQL, LDAP, OS, etc.)
+
 • A2 – Broken Authentication and Session Management
+
 • A3 – Cross-site Scripting (XSS)
+
 • A4 – Insecure Direct Object References
+
 • A6 – Sensitive Data Exposure
+
 • A7 – Missing Function-Level Access Control 
+
 
 
 
