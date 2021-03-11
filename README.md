@@ -15,7 +15,7 @@ export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
 oci waas threat-feed list --waas-policy-id $wafpolid --all | jq -r '.[]'>/tmp/threat-feeds.json
 sed -i 's/OFF/BLOCK/g' /tmp/threat-feeds.json
 sed -i '$d' /tmp/threat-feeds.json
-oci waas threat-feed update --waas-policy-id $wafpol01 --threat-feeds file:///tmp/threat-feeds.json
+oci waas threat-feed update --waas-policy-id $wafpolid --threat-feeds file:///tmp/threat-feeds.json
 ```
 
 
