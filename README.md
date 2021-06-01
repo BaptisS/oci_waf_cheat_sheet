@@ -51,3 +51,22 @@ Top OWASP 10 vulnerability groups include:
 
 
 
+# Update oci_waf_protection rules
+
+1.1.2- Copy and Paste (CTRL+SHIFT+’V’) the command below in your Cloud Shell session : 
+
+(Replace ‘ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx’ by your WAF Policy OCID - copied in the previous step.)
+
+
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas waf-config update --waas-policy-id $wafpolid --protection-rules file:///tmp/defprot.json
+```
+
+
+Sample Protection Rules List : defprot.json
+ 
+
+
