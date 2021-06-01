@@ -62,11 +62,11 @@ Top OWASP 10 vulnerability groups include:
 export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
 
 
-oci waas waf-config update --waas-policy-id $wafpolid --protection-rules file:///tmp/defprot.json
+oci waas waf-config update --waas-policy-id $wafpolid --protection-rules file:///tmp/protectionrules.json
 ```
 
 
-Sample Protection Rules List : defprot.json
+Sample Protection Rules List : protectionrules.json
  
 
 
