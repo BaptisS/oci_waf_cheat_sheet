@@ -18,6 +18,58 @@ sed -i '$d' /tmp/threat-feeds.json
 oci waas threat-feed update --waas-policy-id $wafpolid --threat-feeds file:///tmp/threat-feeds.json
 ```
 
+# Backup/Restore oci_waf_threat-feeds
+
+1.1.2- Copy and Paste (CTRL+SHIFT+’V’) the command below in your Cloud Shell session : 
+
+(Replace ‘ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx’ by your WAF Policy OCID - copied in the previous step.)
+
+Backup : 
+
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas threat-feed list --waas-policy-id $wafpolid --all | jq -r '.[]'>/tmp/threat-feeds_backup.json
+sed -i '$d' /tmp/threat-feeds_backup.json
+
+```
+Restore : 
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas threat-feed update --waas-policy-id $wafpolid --threat-feeds file:///tmp/threat-feeds_backup.json
+```
+
+
+# Backup/Restore oci_waf_protection rules
+
+1.1.2- Copy and Paste (CTRL+SHIFT+’V’) the command below in your Cloud Shell session : 
+
+(Replace ‘ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx’ by your WAF Policy OCID - copied in the previous step.)
+
+Backup : 
+
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas protection-rule list --waas-policy-id $wafpolid --all --output json --query "data [].{key:\"key\",action:\"action\",name:\"name\",description:\"description\"}" > backup_protectionrules.json
+```
+
+Restore : 
+
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas waf-config update --waas-policy-id $wafpolid --protection-rules file://backup_protectionrules.json
+```
+
+
+
+
 
 # List oci_waf_protection rules
 
