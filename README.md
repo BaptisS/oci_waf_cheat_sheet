@@ -68,7 +68,32 @@ oci waas waf-config update --waas-policy-id $wafpolid --protection-rules file://
 ```
 
 
+# Backup/Restore oci_access_control_rules
 
+1.1.2- Copy and Paste (CTRL+SHIFT+’V’) the command below in your Cloud Shell session : 
+
+(Replace ‘ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx’ by your WAF Policy OCID - copied in the previous step.)
+
+Backup : 
+
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas access-rule list --waas-policy-id $wafpolid --all --output json > access_rule_export.json
+cat access_rule_export.json | jq .data > access_rules_backup.json
+
+```
+
+Restore : 
+
+```
+export wafpolid=ocid1.waaspolicy.oc1..aaaaaaaaxxxxxxxxxxx
+
+
+oci waas waf-config update --waas-policy-id $wafpolid --access-rules file://access_rules_backup.json
+
+```
 
 
 # List oci_waf_protection rules
