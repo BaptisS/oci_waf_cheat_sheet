@@ -148,4 +148,17 @@ oci waas waf-config update --waas-policy-id $wafpolid --protection-rules file://
 Sample Protection Rules List : protectionrules.json
  
 
+# List All WAF Policies in a Tenant (All compartments)
+
+1.1.2- Copy and Paste (CTRL+SHIFT+’V’) the command below in your Cloud Shell session : 
+
+
+```
+wafpolist=$(oci search resource structured-search --query-text "query waaspolicy resources" --output json --query "data.items [*].{OCID:identifier}" | jq -r '.[] | .OCID')
+
+for polid in $wafpolist;do oci waas waas-policy get --waas-policy-id $polid --output table --query "data.{OCID:id,PolicyName:\"display-name\",Origins:origins}" ; done
+```
+
+
+ 
 
